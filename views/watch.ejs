@@ -1,0 +1,83 @@
+<%- include('partials/head') %> <%- include('partials/nav') %>
+
+
+<section class="movie-info">
+    <div
+        style="
+            background-image: url('<%= `https://image.tmdb.org/t/p/original/${movie.backdrop_path}` %>');
+        "
+        class="filter"
+    >
+        <div class="featured-gradient-v"></div>
+    </div>
+    <div class="content">
+        <img
+            src="<%= `https://image.tmdb.org/t/p/w500/${movie.poster_path}` %>"
+            alt=""
+        />
+        <div class="info">
+            <div class="title"><%= movie.title %></div>
+            <div class="info-group">
+                <div class="point">
+                    <%= movie.popularity.toString().slice(0, 4) %> Points
+                </div>
+                <div class="year"><%= movie.release_date.slice(0,4)%></div>
+                <div class="rating">
+                    <span style="color: gold">&#9733;</span> <%=
+                    movie.vote_average.toString().slice(0, 3) %>
+                </div>
+                <div class="year"><%- movie.runtime %> Mins</div>
+            </div>
+            <div class="synopsis"><%= movie.overview %></div>
+            <div class="genre">
+                <% for (genre of movie.genres){ %>
+                <li><%= genre.name %></li>
+                <% }%>
+            </div>
+            <div class="btns">
+                <div class="watch btn"><a href="/stream/<%= movie.id %>">► Watch</a></div>
+                <!-- <button class="search-btn">
+                    Search on
+                    <img src="img/pinpng.com-movies-png-2337777.png" alt="" />
+                </button> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="movie similar">
+    <div class="row">
+        <h2>Similar</h2>
+        <div class="row-area">
+            <% for(const movie of similarMovies){ %>
+            <a href="/watch/<%= movie.id %>">
+                <div class="row-item">
+                    <img
+                        src="<%- `https://image.tmdb.org/t/p/w500/${movie.poster_path}` %>"
+                        alt=""
+                    />
+                    <div class="title-rating">
+                        <div class="title">
+                            <% if(movie.title.length >= 30){%> <% movie.title =
+                            movie.title.slice(0, 27) + "..." %> <% } %> <%-
+                            movie.title%>
+                        </div>
+                        <div class="rating">
+                            <span style="color: gold">&#9733;</span> <%-
+                            movie.vote_average.toString().slice(0, 3) %>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="year">
+                            <%- movie.release_date.slice(0,4)%>
+                        </div>
+                        <div class="type">Movie</div>
+                    </div>
+                </div>
+            </a>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/foot') %>

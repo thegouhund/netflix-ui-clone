@@ -1,0 +1,169 @@
+<%- include('partials/head') %> <%- include('partials/nav') %>
+
+<section
+    style="
+        background-image: url('<%= `https://image.tmdb.org/t/p/original/${featuredMovie.backdrop_path}` %>');
+    "
+    class="featured"
+>
+    <div class="featured-gradient-v">
+        <div class="featured-gradient-h">
+            <div class="info">
+                <div class="title"><%- featuredMovie.title %></div>
+                <div class="col">
+                    <div class="point">
+                        <%= featuredMovie.popularity.toString().slice(0, 4) %>
+                        Points
+                    </div>
+                    <div class="year">
+                        <%- featuredMovie.release_date.slice(0,4) %>
+                    </div>
+                    <div class="rating">
+                        <span style="color: gold">&#9733;</span> <%-
+                        featuredMovie.vote_average.toString().slice(0, 3) %>
+                    </div>
+                    <div class="year"><%- featuredMovie.runtime %> Mins</div>
+                    <!-- <div class="seasons">2 Season</div> -->
+                </div>
+                <div class="description"><%- featuredMovie.overview %></div>
+                <div class="btn watch"><a href="/watch/<%= featuredMovie.id %>" class="">► Watch</a></div>
+                <div class="genre">|
+                    <% for (genre of featuredMovie.genres) {%> <%=
+                    `${genre.name} |` %> <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="movie">
+    <div class="row">
+        <div class="row-title">
+            <h2>Popular Movies</h2>
+            <a href="/movies?page=1&sort_by=popularity.desc">See More</a>
+        </div>
+        <div class="row-area">
+            <% for(const movie of movies){ %>
+            <a href="/watch/<%= movie.id %>">
+                <div class="row-item">
+                    <img
+                        src="<%- `https://image.tmdb.org/t/p/w500/${movie.poster_path}` %>"
+                        alt=""
+                    />
+                    <div class="title-rating">
+                        <div class="title">
+                            <% if(movie.title.length >= 30){%> <% movie.title =
+                            movie.title.slice(0, 27) + "..." %> <% } %> <%-
+                            movie.title%>
+                        </div>
+                        <div class="rating">
+                            <span style="color: gold">&#9733;</span> <%-
+                            movie.vote_average.toString().slice(0, 3) %>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="year">
+                            <%- movie.release_date.slice(0,4)%>
+                        </div>
+                        <div class="type">Movie</div>
+                    </div>
+                </div>
+            </a>
+            <% } %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-title">
+            <h2>Top Rated Movies</h2>
+            <a href="/movies?page=1&sort_by=popularity.desc">See More</a>
+        </div>
+        <div class="row-area">
+            <% for(const movie of topRatedMovies){ %>
+            <div class="row-item">
+                <img
+                    src="<%- `https://image.tmdb.org/t/p/w500/${movie.poster_path}` %>"
+                    alt=""
+                />
+                <div class="title-rating">
+                    <div class="title">
+                        <% if(movie.title.length >= 30){%> <% movie.title =
+                        movie.title.slice(0, 27) + "..." %> <% } %> <%-
+                        movie.title%>
+                    </div>
+                    <div class="rating">
+                        <span style="color: gold">&#9733;</span> <%-
+                        movie.vote_average.toString().slice(0, 3) %>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="year"><%- movie.release_date.slice(0,4)%></div>
+                    <div class="type">Movie</div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-title">
+            <h2>Popular TV Shows</h2>
+            <a href="#">See More</a>
+        </div>
+        <div class="row-area">
+            <% for(const tv of tvs){ %>
+            <div class="row-item">
+                <img
+                    src="<%- `https://image.tmdb.org/t/p/w500/${tv.poster_path}` %>"
+                    alt=""
+                />
+                <div class="title-rating">
+                    <div class="title">
+                        <% if(tv.name.length >= 30){%> <% tv.name =
+                        tv.name.slice(0, 30) + "..." %> <% } %> <%- tv.name%>
+                    </div>
+                    <div class="rating">
+                        <span style="color: gold">&#9733;</span> <%-
+                        tv.vote_average.toString().slice(0, 3) %>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="year"><%- tv.first_air_date.slice(0, 4)%></div>
+                    <div class="type">Tv</div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-title">
+            <h2>Top Rated TV Shows</h2>
+            <a href="#">See More</a>
+        </div>
+        <div class="row-area">
+            <% for(const tv of topRatedTvs){ %>
+            <div class="row-item">
+                <img
+                    src="<%- `https://image.tmdb.org/t/p/w500/${tv.poster_path}` %>"
+                    alt=""
+                />
+                <div class="title-rating">
+                    <div class="title">
+                        <% if(tv.name.length >= 30){%> <% tv.name =
+                        tv.name.slice(0, 30) + "..." %> <% } %> <%- tv.name%>
+                    </div>
+                    <div class="rating">
+                        <span style="color: gold">&#9733;</span> <%-
+                        tv.vote_average.toString().slice(0, 3) %>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="year"><%- tv.first_air_date.slice(0, 4)%></div>
+                    <div class="type">Tv</div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<div class="scroller"></div>
+<%- include('partials/nav') %>
