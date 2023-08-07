@@ -1,4 +1,6 @@
 # Netflix UI Clone attempt
+
+insert TMDB_API_KEY in .env 🙏 
 ### Home
 ![Screenshot 2023-08-07 182947](https://github.com/onmail12/netflix-ui-clone/assets/97945798/5838a1f1-19d7-4757-8d36-90471407a26f)
 
